@@ -12,17 +12,18 @@ collect_cpu(){
 
         local idle2=$(( cpu2[4] + cpu2[5] ))
         local total2=0
-        for val in "${cpu2[@]:1}"; do (( total2 += val)); done
+        for val in "${cpu2[@]:1}"; do (( total2 += val )); done
 
         local diff_idle=$(( idle2 -idle1 ))
-        local diff_total=$(( total2 - total1))
+        local diff_total=$(( total2 - total1 ))
         local diff_used=$(( diff_total - diff_idle ))
 
         echo $(( diff_used * 100 / diff_total ))
 
     else
         #macOs / fallback
-        tob -bn1 | grep "Cpu(s)" | awk '{print int($2)}'
+        top -l 1 | grep "CPU usage" | awk '{print int($3)}'  
     fi
 }
 #for collect cpu func i use proc/stat for probability and return int cpu usage %
+echo "CPU Usage: $(collect_cpu)%"

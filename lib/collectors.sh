@@ -38,4 +38,3 @@ collect_memory() {
     }'
 }
 
-echo "Memory Usage: $(collect_memory)%"

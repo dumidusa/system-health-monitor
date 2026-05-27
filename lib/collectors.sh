@@ -27,3 +27,15 @@ collect_cpu(){
 }
 #for collect cpu func i use proc/stat for probability and return int cpu usage %
 echo "CPU Usage: $(collect_cpu)%"
+
+collect_memory() {
+    free -m | awk '/^Mem:/ {
+        total = $2
+        available = $7
+        used = total - available
+
+        printf "%d", (used / total) * 100
+    }'
+}
+
+echo "Memory Usage: $(collect_memory)%"

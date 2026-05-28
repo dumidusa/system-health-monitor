@@ -52,7 +52,7 @@ print_service_status(){
 print_section(){
     echo -e "\n${BOLD}-- $1 --${RESET}"
 }
-
+ ####remove this aafter full code 
 print_header
 print_section "CPU"
 print_matric "CPU Usage" 75 "%" 80

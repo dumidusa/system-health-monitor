@@ -26,7 +26,6 @@ collect_cpu(){
     fi
 }
 #for collect cpu func i use proc/stat for probability and return int cpu usage %
-echo "CPU Usage: $(collect_cpu)%"
 
 collect_memory() {
     free -m | awk '/^Mem:/ {
@@ -38,3 +37,23 @@ collect_memory() {
     }'
 }
 
+collect_disk() {
+    local mount="${1:-/}"
+    df -P "$mount" 2>/dev/null \
+        | awk 'NR==2 {gsub(/%/,"",$5); print $5}'
+}
+#accept a mount point , return int usage %
+
+collect_service() {
+    local service="$1"
+    if systemctl is-active --quiet "$service" 2>/dev/null; then
+        echo "UP"
+    else 
+        echo "down"
+    fi   
+}   #Accept a service name , reuturn "up" or "down"
+
+collect_load_average(){
+    #return 1min load avg
+    awk '{print $1}' /proc/loadavg
+}

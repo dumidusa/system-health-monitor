@@ -10,24 +10,22 @@ status_color(){
     local value="$1"
     local threshold="$2"
     local warn_at=$(( threshold - 10 ))
-
     if (( value >= threshold )); then
-    echo -e "${RED}"
+        echo -e "${RED}"
     elif (( value >= warn_at )); then
         echo -e "${YELLOW}"
-    else 
-    echo -e "${GREEN}"
+    else
+        echo -e "${GREEN}"
     fi
 }
 
 print_header() {
     echo -e "\n${BOLD}${CYAN}******************************************"
-    echo -e " SYSTEM HEALTH MONITOR - $(date '+%H:%M:%S')\n"
-    echo -e "******************************************${RETEST}\n"
-
+    echo -e " SYSTEM HEALTH MONITOR - $(date '+%H:%M:%S')"
+    echo -e "******************************************${RESET}\n"
 }
 
-print_matric(){
+print_metric(){
     local label="$1"
     local value="$2"
     local unit="$3"
@@ -38,22 +36,16 @@ print_matric(){
     "$label" "$value" "$unit" "$threshold" "$unit"
 }
 
-
 print_service_status(){
     local service="$1"
     local status="$2"
-    if [[ "$status" == "up" ]]; then
-        printf " %-20s ${GREEN}%-6s{RESET}\n" "$service" "UP"
+    if [[ "$status" == "UP" ]]; then
+        printf "  %-20s ${GREEN}%-6s${RESET}\n" "$service" "UP"
     else
-        printf " %-20s ${RED}%-6s{RESET}\n" "$service" "DOWN"
+        printf "  %-20s ${RED}%-6s${RESET}\n" "$service" "DOWN"
     fi
 }
 
 print_section(){
     echo -e "\n${BOLD}-- $1 --${RESET}"
 }
- ####remove this aafter full code 
-print_header
-print_section "CPU"
-print_matric "CPU Usage" 75 "%" 80
-print_service_status "nginx" "up"

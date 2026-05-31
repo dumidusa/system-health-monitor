@@ -49,7 +49,7 @@ collect_service() {
     if systemctl is-active --quiet "$service" 2>/dev/null; then
         echo "UP"
     else 
-        echo "down"
+        echo "DOWN"
     fi   
 }   #Accept a service name , reuturn "up" or "down"
 

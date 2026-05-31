@@ -10,6 +10,22 @@ A bash script that monitors CPU, memory, disk, and services on a Linux system. S
 - Slack and email alerts
 - Auto log rotation
 - Configurable thresholds
+## Real World Use Cases
+
+**No-cost server monitoring** — Small teams that can't afford Datadog or New Relic
+use scripts like this to get instant alerting for free on bare metal servers.
+
+**Pre-deployment health check** — Run before deploying new code to confirm CPU is
+stable, disk is not full, and all required services are up.
+
+**After-hours alerting** — Runs every 5 minutes via cron. Detects a crashed service
+or full disk at 3AM and fires a Slack alert to the on-call engineer immediately.
+
+**Audit trail for compliance** — The timestamped log file serves as proof of
+continuous monitoring, required in some banking and healthcare environments.
+
+**New server validation** — When a new VM is provisioned, this script runs as part
+of the bootstrap process to confirm the machine is healthy before it joins the fleet.
 
 ## Requirements
 

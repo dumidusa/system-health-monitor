@@ -109,16 +109,23 @@ Daily report at 8 AM:
 
 ## Project Structure
 
+```
 system-health-monitor/
-├── bin/health_monitor.sh # main entry point
+├── bin/
+│   └── health_monitor.sh    # main entry point
 ├── lib/
-│ ├── collectors.sh # metric collection
-│ ├── alerts.sh # Slack and email alerts
-│ └── report.sh # terminal output
-├── config/config.cfg # thresholds and settings
-├── logs/ # auto-created log files
-├── Dockerfile # containerised run
-└── tests/ # bats test suite
+│   ├── collectors.sh        # metric collection
+│   ├── alerts.sh            # Slack and email alerts
+│   └── report.sh            # terminal output
+├── config/
+│   └── config.cfg           # thresholds and settings
+├── tests/
+│   └── test_collectors.bats # bats test suite
+├── logs/                    # auto-created log files
+├── Dockerfile               # containerised run
+├── .gitignore
+└── README.md
+```
 
 ## Author
 
